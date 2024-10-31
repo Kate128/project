@@ -1,0 +1,19 @@
+<?php
+// created by Ekaterina Horbachenko
+require 'db.php';
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $total = $_POST['total'];
+    $orderId = addOrder($total);
+
+    foreach ($_SESSION['cart'] as $productId => $quantity) {
+        addOrderItem($orderId, $productId, $quantity);
+    }
+
+    // Очищення кошика після оформлення замовлення
+    unset($_SESSION['cart']);
+
+    echo "Order placed successfully! Order ID: " . $orderId;
+}
+?>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Welcome to the Online Store</h1>
+    <a href="catalog.php">View Products</a>
+    <footer>
+        <p>created by Ekaterina Horbachenko</p>
+    </footer>
+</body>
+</html>

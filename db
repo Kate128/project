@@ -1,0 +1,22 @@
+<?php
+require 'config.php';
+
+function getProducts() {
+    global $pdo;
+    $stmt = $pdo->query("SELECT * FROM products");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function addOrder($total) {
+    global $pdo;
+    $stmt = $pdo->prepare("INSERT INTO orders (total) VALUES (:total)");
+    $stmt->execute(['total' => $total]);
+    return $pdo->lastInsertId();
+}
+
+function addOrderItem($orderId, $productId, $quantity) {
+    global $pdo;
+    $stmt = $pdo->prepare("INSERT INTO order_items (order_id, product_id, quantity) VALUES (:order_id, :product_id, :quantity)");
+    $stmt->execute(['order_id' => $orderId, 'product_id' => $productId, 'quantity' => $quantity]);
+}
+?>

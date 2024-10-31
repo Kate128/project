@@ -1,0 +1,33 @@
+<?php
+// created by Ekaterina Horbachenko
+session_start();
+
+if (empty($_SESSION['cart'])) {
+    header("Location: catalog.php");
+    exit;
+}
+
+$total = 0;
+foreach ($_SESSION['cart'] as $productId => $quantity) {
+    // Сюди потрібно буде додати функцію для отримання ціни товару
+    $total += 20.00; // Змініть на отримання реальної ціни товару
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Checkout</h1>
+    <p>Total: $<?= htmlspecialchars($total) ?></p>
+    <form action="process_order.php" method="post">
+        <input type="hidden" name="total" value="<?= $total ?>">
+        <button type="submit">Place Order</button>
+    </form>
+    <a href="cart.php">Back to Cart</a>
+</body>
+</html>
